@@ -146,7 +146,7 @@
             
      
             # TODO: convert to current local position using global_to_local()
-            self.local_relative_to_global = global_to_local(self.current_global,  self.global_home )
+            self.local_relative_to_global = global_to_local(self.current_global, self.global_home )
             
             print('global home {0}, position {1}, local position {2}'.format(self.global_home, self.global_position,
                                                                              self.local_position))
@@ -157,14 +157,17 @@
             grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DISTANCE)
             print("North offset = {0}, east offset = {1}".format(north_offset, east_offset))
             # Define starting point on the grid (this is just grid center)
+            # TODO: convert start position to current position rather than map center
             grid_start = (int(-north_offset + self.local_relative_to_global[0]),
                           int(-east_offset + self.local_relative_to_global[1]))
-            
-            # TODO: convert start position to current position rather than map center
-            
             # Set goal as some arbitrary position on the grid
             # (latitude, longitude)
-            grid_goal = (-north_offset+ 10, -east_offset + 10)
+            global_goal = ([-122.397684, 37.793785, 0])
+            local_goal = global_to_local(global_goal, self.global_home)
+            
+            grid_goal = (-north_offset + local_goal[0] , -east_offset + local_goal[1] )
+            print('GRID GOAL: ', grid_goal)
+
             # TODO: adapt to set goal as latitude / longitude position and convert
             
             new_goal = ' '
@@ -174,12 +177,10 @@
             # or move to a different search space such as a graph (not done here)
             print('Local Start and Goal: ', grid_start, grid_goal)
             path, _ = a_star(grid, heuristic, grid_start, grid_goal)
-            print('path is haere')
+            print('path is here')
             print(path[0][0], path[0][1], path[-1][0], path[-1][1])
             # TODO: prune path to minimize number of waypoints
             # TODO (if you're feeling ambitious): Try a different approach altogether!
-            #pruned_path = list(bresenham(path[0][0], path[0][1], path[-1][0], path[-1][1]))
-            #print(valid_actions(pruned_path, current_node=))
             path = prune_path(path)
             # Convert path to waypoints
             waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in path]

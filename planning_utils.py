@@ -93,16 +93,16 @@ def valid_actions(grid, current_node):
     if y + 1 > m or grid[x, y + 1] == 1:
         valid_actions.remove(Action.EAST)
     # For NE
-    if grid[x-1, y+1] == 1:
+    if x - 1 < 0 or y + 1 > m or grid[x-1, y+1] == 1:
         valid_actions.remove(Action.NE)
     # For NW
-    if grid[x-1, y-1] == 1:
+    if x - 1 < 0 or y - 1 < 0 or grid[x-1, y-1] == 1:
         valid_actions.remove(Action.NW)
-    # for SE
-    if grid[x + 1, y + 1] == 1:
+    # for SE 
+    if x + 1 > n or y + 1 > m or grid[x + 1, y + 1] == 1:
         valid_actions.remove(Action.SE)
     # for SW
-    if grid[x + 1, y - 1] == 1:
+    if  x + 1 > n or  y - 1 < 0 or grid[x + 1, y - 1] == 1:
         valid_actions.remove(Action.SW)
     
     
