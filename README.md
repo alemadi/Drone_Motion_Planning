@@ -97,9 +97,6 @@ self.local_relative_to_global = global_to_local(self.current_global, self.global
 
 
 
-Meanwhile, here's a picture of me flying through the trees!
-![Forest Flying](./misc/in_the_trees.png)
-
 #### 3. Set grid start position from local position
 This is another step in adding flexibility to the start location. As long as it works you're good to go!
 
@@ -120,6 +117,8 @@ SE = (1, 1, np.sqrt(2))
 NW = (-1, -1, np.sqrt(2))
 SW = (1, -1, np.sqrt(2))
 ```
+
+Also, I needed to add restrictions to the new actions, in case they will cause the drone to bump into an obstacle or get out of the grid's boundaries. I added the code below for restrictions in the valid_action function of planning_utils.py
 
 
 
