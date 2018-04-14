@@ -130,7 +130,7 @@ For culling waypoints, I have used the collinearity test.
 I have borrowed the prune_path(path) function from the exercises and its implementation has been successful
 
 
-![Alt text](./misc/without_pruning "before pruning")
+![Alt text](./misc/without_pruning.PNG "before pruning")
 
 
 
@@ -170,7 +170,7 @@ def prune_path(path):
 ```
 
 
-![Alt text](./misc/after_pruning "after pruning")
+![Alt text](./misc/after_pruning.PNG "after pruning")
 
 
 ### Execute the flight
