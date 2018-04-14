@@ -162,10 +162,11 @@
                           int(-east_offset + self.local_relative_to_global[1]))
             # Set goal as some arbitrary position on the grid
             # (latitude, longitude)
-            global_goal = ([-122.397684, 37.793785, 0])
+            global_goal = ([-122.396987, 37.792810, 0])
             local_goal = global_to_local(global_goal, self.global_home)
             
-            grid_goal = (-north_offset + local_goal[0] , -east_offset + local_goal[1] )
+            grid_goal = (int(-north_offset + local_goal[0]) , int(-east_offset + local_goal[1]) )
+            
             print('GRID GOAL: ', grid_goal)
 
             # TODO: adapt to set goal as latitude / longitude position and convert
